@@ -1,0 +1,31 @@
+{
+    "name": "ajanssen/acl",
+    "description": "ZF2 module to generate Twitter Bootstrap UI - forms, navigation, etc.",
+    "license": "New-BSD-License",
+    "keywords": [
+        "acl",
+        "doctrine",
+        "zf2",
+        "zend framework 2",
+        "module"
+    ],
+    "homepage": "https://bitbucket.org/ajanssen/acl",
+    "authors": [
+        {
+            "name": "Alexander Janssen",
+            "homepage": "http://www.tnajanssen.nl"
+        }
+    ],
+    "require": {
+        "zendframework/zendframework": "dev-master",
+        "doctrine/doctrine-orm-module": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "ACL": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
