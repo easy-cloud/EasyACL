@@ -6,7 +6,7 @@ return array(
             'acl\user' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/user[/:action][/:id]',
+                    'route'    => '/acl/user[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -20,7 +20,7 @@ return array(
             'acl\login' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/login',
+                    'route'    => '/acl/login',
                     'defaults' => array(
                         'controller' => 'ACL\Controller\User',
                         'action'     => 'login',
@@ -30,7 +30,7 @@ return array(
             'acl\logout' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/logout',
+                    'route'    => '/acl/logout',
                     'defaults' => array(
                         'controller' => 'ACL\Controller\User',
                         'action'     => 'logout',
@@ -40,7 +40,7 @@ return array(
             'acl\group' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/group[/:action][/:id]',
+                    'route'    => '/acl/group[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -54,7 +54,7 @@ return array(
             'acl\roles' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/roles[/:action][/:id]',
+                    'route'    => '/acl/roles[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -68,7 +68,7 @@ return array(
             'acl\permission' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/admin/permission[/:action][/:id]',
+                    'route'    => '/acl/permission[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',

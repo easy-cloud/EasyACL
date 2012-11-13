@@ -34,6 +34,9 @@ return array(
         ),
     ),
     'view_manager' => array(
+        'template_map' => array(
+            'layout/nosession'       =>  __DIR__ . '/../view/layout/nosession.phtml',
+        ),
         'template_path_stack' => array(
             'acl' => __DIR__ . '/../view',
         ),
