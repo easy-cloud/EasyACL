@@ -87,7 +87,7 @@ class UserController extends AbstractActionController
 
             return new ViewModel(
                 array(
-                    'form'=>$login,
+                    'form'=>$lrogin,
                 )
             );
         } else {
