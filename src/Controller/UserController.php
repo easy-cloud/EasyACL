@@ -67,7 +67,7 @@ class UserController extends AbstractActionController
 
     public function loginAction()
     {
-        $this->layout('acl/layout/nosession');
+        $this->layout('layout/nosession');
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if (!$authService->getIdentity()) {
             $login = new LoginForm();
@@ -87,7 +87,7 @@ class UserController extends AbstractActionController
 
             return new ViewModel(
                 array(
-                    'form'=>$layoutogin,
+                    'form'=>$login,
                 )
             );
         } else {
