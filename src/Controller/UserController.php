@@ -5,10 +5,10 @@ namespace ACL\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use ACL\Form\LoginForm;
-
 class UserController extends AbstractActionController
 {
     protected $Service;
+
     public function getService()
     {
         if (!$this->Service) {
@@ -20,9 +20,11 @@ class UserController extends AbstractActionController
     }
     public function indexAction()
     {
-        return new ViewModel(array(
-            'users'=>$this->getService()->getUser(),
-        ));
+        return new ViewModel(
+            array(
+                'users'=>$this->getService()->getUser(),
+            )
+        );
     }
 
     public function addAction()
@@ -32,9 +34,11 @@ class UserController extends AbstractActionController
             return $this->redirect()->toRoute('acl\user', array('action'=>'index'));
         }
 
-        return new ViewModel(array(
-            'form'=>$addUser,
-        ));
+        return new ViewModel(
+            array(
+                'form'=>$addUser,
+            )
+        );
     }
 
     public function editAction()
@@ -45,10 +49,12 @@ class UserController extends AbstractActionController
             return $this->redirect()->toRoute('acl\user', array('action'=>'index'));
         }
 
-        return new ViewModel(array(
-            'form'=>$editUser,
-            'id'=>$id,
-        ));
+        return new ViewModel(
+            array(
+                'form'=>$editUser,
+                'id'=>$id,
+            )
+        );
     }
 
     public function removeAction()
@@ -61,7 +67,7 @@ class UserController extends AbstractActionController
 
     public function loginAction()
     {
-        $this->layout('layout/nosession');
+        $this->layout('acl/layout/nosession');
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if (!$authService->getIdentity()) {
             $login = new LoginForm();
@@ -70,20 +76,24 @@ class UserController extends AbstractActionController
                 if ($authenticate) {
                     return $this->redirect()->toRoute('home');
                 } else {
-                    return new ViewModel(array(
-                        'form'=>$login,
-                        'error' => 'Your authentication credentials are not valid',
-                    ));
+                    return new ViewModel(
+                        array(
+                            'form'=>$login,
+                            'error' => 'Your authentication credentials are not valid',
+                        )
+                    );
                 }
             }
 
-            return new ViewModel(array(
-                'form'=>$login,
+            return new ViewModel(
+                array(
+                    'form'=>$layoutogin,
                 )
             );
         } else {
-            return new ViewModel(array(
-                'error'=>"You have not enough roles to view this page."
+            return new ViewModel(
+                array(
+                    'error'=>"You have not enough roles to view this page."
                 )
             );
         }
@@ -91,7 +101,6 @@ class UserController extends AbstractActionController
 
     public function logoutAction()
     {
-        $_SESSION['KCFINDER']['disabled'] = true;
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         $authService->clearIdentity();
 
