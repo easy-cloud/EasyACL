@@ -1,6 +1,6 @@
 {
     "name": "ajanssen/acl",
-    "description": "ZF2 module to generate Twitter Bootstrap UI - forms, navigation, etc.",
+    "description": "ZF2 module for managing rights and users.",
     "license": "New-BSD-License",
     "keywords": [
         "acl",
