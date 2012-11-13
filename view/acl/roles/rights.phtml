@@ -1,0 +1,124 @@
+<?php 
+$title = $this->translate('Edit rights');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('acl\roles', array('action' => 'rights', 'id'=>$this->id)));
+$form->setAttribute('class', "form-horizontal");
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+<div class="control-group">
+	<label class="control-label" for="all[]"><?php echo $this->translate('All'); ?></label>
+	<div class="controls">
+	  	<input type="checkbox" name="all[]" data-master="true" value="master">
+	</div>
+</div>
+<?php
+foreach($form->actions as $action=>$value){
+	?>
+		<div class="control-group">
+		    <label class="control-label" for="all[]"><?php echo $this->translate($action); ?></label>
+		    <div class="controls">
+		      	<input type="checkbox" name="all[]" data-action="<?php echo $action ?>" value="action_<?php echo $action ?>">
+		    </div>
+		</div>
+	<?php
+}
+foreach($form->permissions as $key=>$permission){
+	echo "<h3>".$key."</h3>";
+	?>
+		<div class="control-group">
+		    <label class="control-label" for="all[]"><?php echo $this->translate('All'); ?></label>
+		    <div class="controls">
+		      	<input type="checkbox" name="all[]" data-namespace="<?php echo $key ?>" value="namespace_<?php echo $key ?>">
+		    </div>
+		</div>
+	<?php
+	foreach($permission as $pkey => $subpermission){
+		echo "<h4>".$pkey."</h4>";
+		?>
+
+			<div class="control-group">
+			    <label class="control-label" for="all[]"><?php echo $this->translate('All'); ?></label>
+			    <div class="controls">
+			      	<input type="checkbox" name="all[]" data-namespace="<?php echo $key ?>" data-controller="<?php echo $pkey ?>" value="<?php echo $key."_".$pkey ?>">
+			    </div>
+  			</div>
+		<?php
+		foreach($subpermission as $spkey=>$id){
+			?>
+				<div class="control-group">
+				    <label class="control-label" for="<?php echo $id ?>"><?php echo $this->translate($spkey); ?></label>
+				    <div class="controls">
+				      	<?php echo $this->formInput($form->get($id)) ?>
+				    </div>
+				  </div>
+			<?php
+		}
+	}
+}
+echo $this->formInput($form->get('submit'));
+echo $this->formInput($form->get('reset'));
+echo $this->form()->closeTag($form);
+?>
+<script>
+	$("form").on("change", "input", function(){
+		if($(this).attr('name')=="all[]"){
+			var check=$(this).is(':checked'); 
+			if($(this).data('controller')!=null){
+				$("input[data-controller='"+$(this).data('controller')+"']").attr('checked', check);
+			} else if($(this).data('namespace')!=null){
+				$("input[data-namespace='"+$(this).data('namespace')+"']").attr('checked', check);
+			} else if($(this).data('action')!=null){
+				$("input[data-action='"+$(this).data('action')+"']").attr('checked', check);
+			} else if($(this).data('master')!=null){
+				$("input[type='checkbox']").attr('checked', check);
+			}
+		} 
+		if(!$(this).is(':checked')){
+			if($(this).data('action')!=null){
+				$("input[data-action='"+$(this).data('action')+"'][name='all[]']").attr('checked', false);
+			} if($(this).data('namespace')!=null){
+				$("input[data-namespace='"+$(this).data('namespace')+"'][name='all[]']").attr('checked', false);
+			} if($(this).data('controller')!=null){
+				$("input[data-controller='"+$(this).data('controller')+"'][name='all[]']").attr('checked', false);
+			} if($(this).attr('name')=="all[]"){
+				console.log($(this));
+			} 
+			$("input[data-master='true']").attr('checked', false);
+		} $("input[data-action][name='all[]']").each(function(){
+			var cname = $(this).data('action');
+			if($("input[data-action='"+cname+"'][name!='all[]']:not(:checked)").length==0){
+				$("input[data-action='"+cname+"'][name='all[]']").attr("checked", true)
+			}else{
+				$("input[data-action='"+cname+"'][name='all[]']").attr("checked", false)
+			}
+		});
+		$("input[data-namespace][name='all[]']").each(function(){
+			var cname = $(this).data('namespace');
+			if($("input[data-namespace='"+cname+"'][name!='all[]']:not(:checked)").length==0){
+				$("input[data-namespace='"+cname+"'][name='all[]']").attr("checked", true)
+			}else{
+				$("input[data-namespace='"+cname+"'][name='all[]']").attr("checked", false)
+			}
+		});
+		$("input[data-controller][name='all[]']").each(function(){
+			var cname = $(this).data('controller');
+			if($("input[data-controller='"+cname+"'][name!='all[]']:not(:checked)").length==0){
+				$("input[data-controller='"+cname+"'][name='all[]']").attr("checked", true)
+			}else{
+				$("input[data-controller='"+cname+"'][name='all[]']").attr("checked", false)
+			}
+		});
+		if($("input[data-master!='true'][name='all[]']:not(:checked)").length==0){
+			$("input[data-master='true']").attr("checked", true)
+		}
+	});
+	$(document).ready(function(){$("input[type='submit']").trigger("change");});
+</script>

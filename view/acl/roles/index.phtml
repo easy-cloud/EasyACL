@@ -1,0 +1,29 @@
+<?php 
+$title = $this->translate('Roles');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+<a class="btn btn-primary" href="<?php echo $this->url('acl\roles', array('action'=>'add')) ?>"><i class="icon-plus icon-white"></i></a>
+<hr/>
+<table class="table">
+	<thead>
+		<tr>
+		    <th><?php echo $this->translate('ID#'); ?></th>
+		    <th><?php echo $this->translate('Name'); ?></th>
+		    <th><?php echo $this->translate('User/Group name'); ?></th>
+		    <th><?php echo $this->translate('Actions'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($this->roles as $role):?>
+			<tr><td><?php echo $role->id ?></td>
+				<td><?php echo $role->name ?></td>
+				<td><?php if($role->user_id){echo $role->user_id->name;}elseif($role->group_id){echo $role->group_id->name;} ?></td>
+				<td><a href="<?php echo $this->url('acl\roles',array('action'=>'rights', 'id' => $role->id)); ?>" class="btn btn-info"><i class="icon-cog icon-white"></i></a>
+					<a href="<?php echo $this->url('acl\roles',array('action'=>'edit', 'id' => $role->id)); ?>" class="btn btn-info"><i class="icon-pencil icon-white"></i></a>
+					<a href="<?php echo $this->url('acl\roles',array('action'=>'remove', 'id' => $role->id)); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td></tr>
+
+		<?php endforeach; ?>
+	</tbody>
+</table>

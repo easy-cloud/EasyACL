@@ -1,0 +1,19 @@
+<?php
+$title = $this->translate('Login');
+$this->headTitle($title);
+?>
+<img src="http://www.stadennatuur.nl/assets/websites/stadennatuur/images/site/logo-stad-en-natuur.png" />
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+Toegang tot het Evenement Beheer Systeem van Stad En Natuur
+<hr/>
+<?php
+if(isset($this->error)){
+	echo $this->error;
+}
+if($form = $this->form){
+	$form->setAttribute('action', $this->url('acl\user', array('action' => 'login')));
+	$form->prepare();
+	echo $this->formTwb($form);
+}
+?>

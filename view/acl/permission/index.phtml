@@ -1,0 +1,27 @@
+<?php 
+$title = $this->translate('Permission');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+<table class="table">
+	<thead>
+		<tr>
+		    <th><?php echo $this->translate('ID#'); ?></th>
+		    <th><?php echo $this->translate('Namespace'); ?></th>
+		    <th><?php echo $this->translate('Controller'); ?></th>
+		    <th><?php echo $this->translate('Action'); ?></th>
+		    <th><?php echo $this->translate('Actions'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($this->permissions as $permission):?>
+			<tr><td><?php echo $permission->id ?></td>
+				<td><?php echo $permission->namespace ?></td>
+				<td><?php echo $permission->controller ?></td>
+				<td><?php echo $permission->action ?></td>
+				<td><a href="<?php echo $this->url('acl\permission',array('action'=>'remove', 'id' => $permission->id)); ?>" class="btn btn-danger"><i class="icon-remove"></i></a></td></tr>
+
+		<?php endforeach; ?>
+	</tbody>
+</table>

@@ -1,0 +1,16 @@
+<?php 
+$title = $this->translate('Edit group');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('acl\group', array('action' => 'edit', 'id'=>$this->id)));
+$form->prepare();
+
+echo $this->formTwb($form)
+
+
+?>
