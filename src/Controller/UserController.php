@@ -67,7 +67,7 @@ class UserController extends AbstractActionController
 
     public function loginAction()
     {
-        $this->layout('layout/nosession');
+        // $this->layout('layout/nosession');
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if (!$authService->getIdentity()) {
             $login = new LoginForm();
