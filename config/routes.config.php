@@ -234,6 +234,17 @@ return array(
                             ),
                         ),
                     ),
+                    'norights' => array(
+                        'type'      => 'literal',
+                        'options'   => array(
+                            'route'     => 'norights',
+                            'defaults'  => array(
+                                'controller'    => 'Application\Controller\Errors',
+                                'action'        => 'norights'
+                            ),
+                        ),
+                        'may_terminate' => true,
+                    ),
                 ),
             ),
         ),
