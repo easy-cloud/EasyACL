@@ -1,4 +1,5 @@
-acl
-===
+A advanced but simple ACL module for Zend framework 2 and Doctrine 2! 
 
-Zend and Doctrine ACL Module
+You can set rights per group or user. Everything is loaded from Doctrine.
+
+Navigation support added.
