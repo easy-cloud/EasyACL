@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = $this->translate('Permission');
 $this->headTitle($title);
 ?>
@@ -20,7 +20,7 @@ $this->headTitle($title);
 				<td><?php echo $permission->namespace ?></td>
 				<td><?php echo $permission->controller ?></td>
 				<td><?php echo $permission->action ?></td>
-				<td><a href="<?php echo $this->url('acl\permission',array('action'=>'remove', 'id' => $permission->id)); ?>" class="btn btn-danger"><i class="icon-remove"></i></a></td></tr>
+				<td><a href="<?php echo $this->url('acl/permission/remove', array('id' => $permission->id)); ?>" class="btn btn-danger"><i class="icon-remove"></i></a></td></tr>
 
 		<?php endforeach; ?>
 	</tbody>

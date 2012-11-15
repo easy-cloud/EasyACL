@@ -24,7 +24,7 @@ return array(
                 'identity_class' => 'ACL\Entity\User',
                 'identity_property' => 'email',
                 'credential_property' => 'password',
-                'credential_callable' => function($user, $passwordGiven) {
+                'credential_callable' => function ($user, $passwordGiven) {
                     $bcrypt = new \Zend\Crypt\Password\Bcrypt();
                     $bcrypt->setSalt(51292170314052011201451452855644564);
                     $passwordGiven=$bcrypt->create($passwordGiven);

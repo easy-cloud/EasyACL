@@ -13,47 +13,113 @@ class Permission extends AbstractACLService
     protected $serviceLocator;
 
     protected $RolesService;
+    protected $UserService;
 
-    protected function getACL()
+    // protected function getACL()
+    // {
+    //     $acl = new Acl();
+    //     $roles=$this->getRolesService()->getRoles();
+    //     $resources=$this->getPermission();
+    //     $acl->addRole(new Role('master'));
+    //     $acl->allow('master');
+    //     foreach ($roles as $role) {
+    //         $acl->addRole(new Role($role->name));
+    //         $all=$role->allowed_all;
+    //         if (isset($all[0])&&$all[0]==="master") {
+    //             $acl->allow($role->name);
+    //         } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
+    //             foreach ($all['namespace'] as $namespace) {
+    //                 $acl->allow($role->name, $namespace);
+    //             }
+    //         } else {
+    //             if (isset($all)&&is_array($all)) {
+    //                 foreach ($all as $key=>$permission) {
+    //                     if ($key!=="action") {
+    //                         $acl->allow($role->name, $permission);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         foreach ($role->permissions as $permission) {
+    //             $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
+    //             $acl->allow($role->name, $pm);
+    //         }
+    //     }
+    //     \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
+    //     \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole('Guest');
+
+    //     return $acl;
+    //}
+
+    protected function getAcl()
     {
         $acl = new Acl();
-        $roles=$this->getRolesService()->getRoles();
+        $UserLoggedin = $this->getUser();
+        $roles = array();
+        $rolename = 'Guest';
+        if ($UserLoggedin) {
+            $allowed_all=$UserLoggedin->roles->allowed_all;
+            $rolename = $UserLoggedin->email;
+            $acl->addRole(new Role($rolename));
+            if (isset($allowed_all[0])&&$allowed_all[0]==="master") {
+                $acl->allow($UserLoggedin->email);
+            } else {
+                $roles[] = $UserLoggedin->roles;
+                foreach ($UserLoggedin->group as $group) {
+                    $roles[] = $group->roles;
+                }
+            }
+        } else {
+            $acl->addRole(new Role($rolename));
+            try {
+                $roles[] = $this->getRolesService()->getRepository()->findyBy(array('name'=>'Guest'));
+            } catch (Exception $e) {
+
+            }
+        }
         $resources=$this->getPermission();
         foreach ($resources as $resource) {
             $action = $resource->namespace . "\\" . $resource->controller . "\\" . $resource->action;
             $controller = $resource->namespace . "\\" . $resource->controller;
             $namespace = $resource->namespace;
-            if (!$acl->hasResource($namespace)) { $acl->addResource($namespace); }
-            if (!$acl->hasResource($controller)) { $acl->addResource($controller, $namespace); }
-            if (!$acl->hasResource($action)) { $acl->addResource($action, $controller); }
+            if (!$acl->hasResource($namespace)) {
+                $acl->addResource($namespace);
+            }
+            if (!$acl->hasResource($controller)) {
+                $acl->addResource($controller, $namespace);
+            }
+            if (!$acl->hasResource($action)) {
+                $acl->addResource($action, $controller);
+            }
         }
-        foreach ($roles as $role) {
-            $acl->addRole(new Role($role->name));
-            $all=$role->allowed_all;
-            if (isset($all[0])&&$all[0]==="master") {
-                $acl->allow($role->name);
-            } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
-                foreach ($all['namespace'] as $namespace) {
-                    $acl->allow($role->name, $namespace);
-                }
-            } else {
-                if (isset($all)&&is_array($all)) {
-                    foreach ($all as $key=>$permission) {
-                        if ($key!=="action") {
-                            $acl->allow($role->name, $permission);
+        if (!empty($roles) && $rolename) {
+            foreach ($roles as $role) {
+                $all=$role->allowed_all;
+                if (isset($all[0])&&$all[0]==="master") {
+                } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
+                    foreach ($all['namespace'] as $namespace) {
+                        $acl->allow($rolename, $namespace);
+                    }
+                } else {
+                    if (isset($all)&&is_array($all)) {
+                        foreach ($all as $key=>$permission) {
+                            if ($key!=="action") {
+                                $acl->allow($rolename, $permission);
+                            }
                         }
                     }
                 }
-            }
-            foreach ($role->permissions as $permission) {
-                $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
-                $acl->allow($role->name, $pm);
+                foreach ($role->permissions as $permission) {
+                    $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
+                    $acl->allow($rolename, $pm);
+                }
             }
         }
         \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
-        \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole('Guest');
+        \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole($rolename);
 
         return $acl;
+
     }
 
     public function getRolesService()
@@ -65,6 +131,17 @@ class Permission extends AbstractACLService
         return $this->RolesService;
 
     }
+
+    public function getUserService()
+    {
+        if (!$this->UserService) {
+            $this->UserService=$this->getServiceLocator()->get('user.service');
+        }
+
+        return $this->UserService;
+
+    }
+
     public function getPermission($id=null)
     {
         if (!$id) {
@@ -114,15 +191,15 @@ class Permission extends AbstractACLService
             if (isset($all[0])&&$all[0]==="master") {
                 $roles->addPermission($permission);
             } elseif (isset($all['namespace'])&&is_array($all['namespace'])) {
-                if (in_array($data['namespace'],$all['namespace'])) {
+                if (in_array($data['namespace'], $all['namespace'])) {
                     $roles->addPermission($permission);
                 }
             } elseif (isset($all[$data['namespace']])&&is_array($all[$data['namespace']])) {
-                if (in_array($data['namespace']."\\".$data['controller'],$all[$data['namespace']])) {
+                if (in_array($data['namespace']."\\".$data['controller'], $all[$data['namespace']])) {
                     $roles->addPermission($permission);
                 }
             } elseif (isset($all['action'])&&is_array($all['action'])) {
-                if (in_array($data['action'],$all['action'])) {
+                if (in_array($data['action'], $all['action'])) {
                     $roles->addPermission($permission);
                 }
             }
@@ -143,7 +220,8 @@ class Permission extends AbstractACLService
     public function getUser()
     {
         $authenticationService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-        $loggedUser = $authenticationService->getIdentity();
+
+        return $authenticationService->getIdentity();
     }
     public function isAllowed($needed)
     {
@@ -155,13 +233,8 @@ class Permission extends AbstractACLService
                 if (isset($allowed_all[0])&&$allowed_all[0]==="master") {
                     return true;
                 }
-                if ($acl->isAllowed($loggedUser->roles->name, $needed)) {
+                if ($acl->isAllowed($loggedUser->email, $needed)) {
                     return true;
-                }
-            }
-            foreach ($loggedUser->group as $group) {
-                if ($acl->isAllowed($group->roles->name, $needed)) {
-                     return true;
                 }
             }
         } else {

@@ -31,7 +31,7 @@ class UserController extends AbstractActionController
     {
         $addUser=$this->getService()->addUser($this->getRequest());
         if ($addUser===true) {
-            return $this->redirect()->toRoute('acl\user', array('action'=>'index'));
+            return $this->redirect()->toRoute('acl/users');
         }
 
         return new ViewModel(
@@ -46,7 +46,7 @@ class UserController extends AbstractActionController
         $id=(int) $this->getEvent()->getRouteMatch()->getParam('id');
         $editUser=$this->getService()->editUser($this->getRequest(), $id);
         if ($editUser===true) {
-            return $this->redirect()->toRoute('acl\user', array('action'=>'index'));
+            return $this->redirect()->toRoute('acl/users');
         }
 
         return new ViewModel(
@@ -62,7 +62,7 @@ class UserController extends AbstractActionController
         $id=(int) $this->getEvent()->getRouteMatch()->getParam('id');
         $this->getService()->removeUser($id);
 
-        return $this->redirect()->toRoute('acl\user', array('action'=>'index'));
+        return $this->redirect()->toRoute('acl/users');
     }
 
     public function loginAction()
@@ -87,13 +87,13 @@ class UserController extends AbstractActionController
 
             return new ViewModel(
                 array(
-                    'form'=>$lrogin,
+                    'form'=>$login,
                 )
             );
         } else {
             return new ViewModel(
                 array(
-                    'error'=>"You have not enough roles to view this page."
+                    'error'=>"You are already logged in. <a href=".$this->url()->fromRoute('acl/logout').">Click here to logout</a>"
                 )
             );
         }

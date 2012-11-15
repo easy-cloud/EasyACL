@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = $this->translate('Edit role');
 $this->headTitle($title);
 ?>
@@ -7,7 +7,7 @@ $this->headTitle($title);
 <?php
 
 $form = $this->form;
-$form->setAttribute('action', $this->url('acl\roles', array('action' => 'edit', 'id'=>$this->id)));
+$form->setAttribute('action', $this->url('acl/roles/edit', array('id'=>$this->id)));
 $form->prepare();
 
 echo $this->formTwb($form);

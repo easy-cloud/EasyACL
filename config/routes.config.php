@@ -18,9 +18,9 @@ return array(
                     'users' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'users',
+                            'route'     => '/users',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\User',
+                                'controller'    => 'ACL\Controller\User',
                                 'action'        => 'index'
                             ),
                         ),
@@ -29,9 +29,9 @@ return array(
                             'add' => array(
                                 'type'      => 'literal',
                                 'options'   => array(
-                                    'route'     => 'add',
+                                    'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\User',
+                                        'controller'    => 'ACL\Controller\User',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -40,12 +40,12 @@ return array(
                             'edit' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'edit/:id',
+                                    'route'     => '/edit/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\User',
+                                        'controller'    => 'ACL\Controller\User',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -54,12 +54,12 @@ return array(
                             'remove' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'remove/:id',
+                                    'route'     => '/remove/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\User',
+                                        'controller'    => 'ACL\Controller\User',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -70,9 +70,9 @@ return array(
                     'login' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'login',
+                            'route'     => '/login',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\User',
+                                'controller'    => 'ACL\Controller\User',
                                 'action'        => 'login'
                             ),
                         ),
@@ -81,9 +81,9 @@ return array(
                     'logout' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'logout',
+                            'route'     => '/logout',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\User',
+                                'controller'    => 'ACL\Controller\User',
                                 'action'        => 'logout'
                             ),
                         ),
@@ -92,9 +92,9 @@ return array(
                     'groups' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'groups',
+                            'route'     => '/groups',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\Group',
+                                'controller'    => 'ACL\Controller\Group',
                                 'action'        => 'index'
                             ),
                         ),
@@ -103,9 +103,9 @@ return array(
                             'add' => array(
                                 'type'      => 'literal',
                                 'options'   => array(
-                                    'route'     => 'add',
+                                    'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Group',
+                                        'controller'    => 'ACL\Controller\Group',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -114,12 +114,12 @@ return array(
                             'edit' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'edit/:id',
+                                    'route'     => '/edit/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Group',
+                                        'controller'    => 'ACL\Controller\Group',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -128,12 +128,12 @@ return array(
                             'remove' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'remove/:id',
+                                    'route'     => '/remove/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Group',
+                                        'controller'    => 'ACL\Controller\Group',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -144,9 +144,9 @@ return array(
                     'roles' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'roles',
+                            'route'     => '/roles',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\Roles',
+                                'controller'    => 'ACL\Controller\Roles',
                                 'action'        => 'index'
                             ),
                         ),
@@ -155,9 +155,9 @@ return array(
                             'add' => array(
                                 'type'      => 'literal',
                                 'options'   => array(
-                                    'route'     => 'add',
+                                    'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Roles',
+                                        'controller'    => 'ACL\Controller\Roles',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -166,12 +166,12 @@ return array(
                             'edit' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'edit/:id',
+                                    'route'     => '/edit/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Roles',
+                                        'controller'    => 'ACL\Controller\Roles',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -180,12 +180,12 @@ return array(
                             'remove' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'remove/:id',
+                                    'route'     => '/remove/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Roles',
+                                        'controller'    => 'ACL\Controller\Roles',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -194,12 +194,12 @@ return array(
                             'rights' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'rights/:id',
+                                    'route'     => '/rights/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Roles',
+                                        'controller'    => 'ACL\Controller\Roles',
                                         'action'        => 'rights'
                                     ),
                                 ),
@@ -210,9 +210,9 @@ return array(
                     'permission' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'permission',
+                            'route'     => '/permission',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\Permission',
+                                'controller'    => 'ACL\Controller\Permission',
                                 'action'        => 'index'
                             ),
                         ),
@@ -221,12 +221,12 @@ return array(
                             'remove' => array(
                                 'type'      => 'segment',
                                 'options'   => array(
-                                    'route'     => 'remove/:id',
+                                    'route'     => '/remove/:id',
                                     'constraints' => array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'Application\Controller\Permission',
+                                        'controller'    => 'ACL\Controller\Permission',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -237,9 +237,9 @@ return array(
                     'norights' => array(
                         'type'      => 'literal',
                         'options'   => array(
-                            'route'     => 'norights',
+                            'route'     => '/norights',
                             'defaults'  => array(
-                                'controller'    => 'Application\Controller\Errors',
+                                'controller'    => 'ACL\Controller\Errors',
                                 'action'        => 'norights'
                             ),
                         ),

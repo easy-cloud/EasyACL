@@ -10,7 +10,7 @@ if(isset($this->error)){
 	echo $this->error;
 }
 if($form = $this->form){
-	$form->setAttribute('action', $this->url('acl\user', array('action' => 'login')));
+	$form->setAttribute('action', $this->url('acl/login'));
 	$form->prepare();
 	echo $this->formTwb($form);
 }

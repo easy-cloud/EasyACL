@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = $this->translate('Edit rights');
 $this->headTitle($title);
 ?>
@@ -7,7 +7,7 @@ $this->headTitle($title);
 <?php
 
 $form = $this->form;
-$form->setAttribute('action', $this->url('acl\roles', array('action' => 'rights', 'id'=>$this->id)));
+$form->setAttribute('action', $this->url('acl/roles/rights', array('id'=>$this->id)));
 $form->setAttribute('class', "form-horizontal");
 $form->prepare();
 echo $this->form()->openTag($form);
@@ -70,7 +70,7 @@ echo $this->form()->closeTag($form);
 <script>
 	$("form").on("change", "input", function(){
 		if($(this).attr('name')=="all[]"){
-			var check=$(this).is(':checked'); 
+			var check=$(this).is(':checked');
 			if($(this).data('controller')!=null){
 				$("input[data-controller='"+$(this).data('controller')+"']").attr('checked', check);
 			} else if($(this).data('namespace')!=null){
@@ -80,7 +80,7 @@ echo $this->form()->closeTag($form);
 			} else if($(this).data('master')!=null){
 				$("input[type='checkbox']").attr('checked', check);
 			}
-		} 
+		}
 		if(!$(this).is(':checked')){
 			if($(this).data('action')!=null){
 				$("input[data-action='"+$(this).data('action')+"'][name='all[]']").attr('checked', false);
@@ -90,7 +90,7 @@ echo $this->form()->closeTag($form);
 				$("input[data-controller='"+$(this).data('controller')+"'][name='all[]']").attr('checked', false);
 			} if($(this).attr('name')=="all[]"){
 				console.log($(this));
-			} 
+			}
 			$("input[data-master='true']").attr('checked', false);
 		} $("input[data-action][name='all[]']").each(function(){
 			var cname = $(this).data('action');

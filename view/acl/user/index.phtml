@@ -1,10 +1,10 @@
-<?php 
+<?php
 $title = $this->translate('Users');
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <hr/>
-<a class="btn btn-primary" href="<?php echo $this->url('acl\user', array('action'=>'add')) ?>"><i class="icon-plus icon-white"></i></a>
+<a class="btn btn-primary" href="<?php echo $this->url('acl/users/add') ?>"><i class="icon-plus icon-white"></i></a>
 <hr/>
 <table class="table">
 	<thead>
@@ -22,8 +22,8 @@ $this->headTitle($title);
 				<td><?php echo $user->name ?></td>
 				<td><?php echo $user->surname ?></td>
 				<td><?php echo $user->email ?></td>
-				<td><a href="<?php echo $this->url('acl\user',array('action'=>'edit', 'id' => $user->id)); ?>" class="btn btn-info"><i class="icon-pencil icon-white"></i></a>
-					<a href="<?php echo $this->url('acl\user',array('action'=>'remove', 'id' => $user->id)); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td></tr>
+				<td><a href="<?php echo $this->url('acl/users/edit',array('id' => $user->id)); ?>" class="btn btn-info"><i class="icon-pencil icon-white"></i></a>
+					<a href="<?php echo $this->url('acl/users/remove',array('id' => $user->id)); ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a></td></tr>
 
 		<?php endforeach; ?>
 	</tbody>

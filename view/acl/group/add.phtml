@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = $this->translate('Add group');
 $this->headTitle($title);
 ?>
@@ -7,7 +7,7 @@ $this->headTitle($title);
 <?php
 
 $form = $this->form;
-$form->setAttribute('action', $this->url('acl\group', array('action' => 'add')));
+$form->setAttribute('action', $this->url('acl/groups/add'));
 $form->prepare();
 
 echo $this->formTwb($form)

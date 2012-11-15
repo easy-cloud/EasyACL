@@ -32,13 +32,13 @@ class Permission extends AbstractPlugin
         );
         if (!$this->getService($sm)->isAllowed($needed)) {
             $router = $e->getRouter();
-            if ($this->getService($sm)->getUser()) {
-                $url      = $router->assemble(array(), array('name' => 'norights'));
+            if ($this->getService($sm)->getUser()&&$needed!=="ACL\Errors\\norights") {
+                $url      = $router->assemble(array(), array('name' => 'acl/norights'));
                 $response = $e->getResponse();
                 $response->setStatusCode(401);
                 $response->getHeaders()->addHeaderLine('Location', $url);
-            } elseif ($needed!=="ACL\User\login"&&$needed!=="API\login\index") {
-                $url      = $router->assemble(array(), array('name' => '/acl/login'));
+            } elseif ($needed!=="ACL\User\login"&&$needed!=="API\login\index"&&$needed!=="ACL\Errors\\norights") {
+                $url      = $router->assemble(array(), array('name' => 'acl/login'));
                 $response = $e->getResponse();
                 $response->setStatusCode(302);
                 $response->getHeaders()->addHeaderLine('Location', $url);
