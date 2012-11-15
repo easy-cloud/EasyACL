@@ -50,8 +50,8 @@ class Permission extends AbstractACLService
                 $acl->allow($role->name, $pm);
             }
         }
-        Zend\View\Helper\Navigation\HelperAbstract::setDefaultAcl($acl);
-        Zend\View\Helper\Navigation\HelperAbstract::setDefaultRole('Guest');
+        \Zend\View\Helper\Navigation\HelperAbstract::setDefaultAcl($acl);
+        \Zend\View\Helper\Navigation\HelperAbstract::setDefaultRole('Guest');
 
         return $acl;
     }
@@ -140,12 +140,15 @@ class Permission extends AbstractACLService
         $em->remove($permission);
         $em->flush();
     }
-
+    public function getUser()
+    {
+        $authenticationService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+        $loggedUser = $authenticationService->getIdentity();
+    }
     public function isAllowed($needed)
     {
         $acl = $this->getACL();
-        $authenticationService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
-        $loggedUser = $authenticationService->getIdentity();
+        $loggedUser = $this->getUser();
         if ($loggedUser) {
             if (is_object($loggedUser->roles)) {
                 $allowed_all=$loggedUser->roles->allowed_all;
