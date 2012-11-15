@@ -6,6 +6,7 @@ return array(
             'ACL\Controller\User' => 'ACL\Controller\UserController',
             'ACL\Controller\Roles' => 'ACL\Controller\RolesController',
             'ACL\Controller\Group' => 'ACL\Controller\GroupController',
+            'ACL\Controller\Errors' => 'ACL\Controller\ErrorsController',
             'ACL\Controller\Permission' => 'ACL\Controller\PermissionController',
         ),
     ),
