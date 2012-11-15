@@ -38,7 +38,7 @@ class Permission extends AbstractPlugin
                 $response->setStatusCode(401);
                 $response->getHeaders()->addHeaderLine('Location', $url);
             } elseif ($needed!=="ACL\User\login"&&$needed!=="API\login\index") {
-                $url      = $router->assemble(array(), array('name' => 'login'));
+                $url      = $router->assemble(array(), array('name' => '/acl/login'));
                 $response = $e->getResponse();
                 $response->setStatusCode(302);
                 $response->getHeaders()->addHeaderLine('Location', $url);
