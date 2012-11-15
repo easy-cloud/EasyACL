@@ -1,1 +1,7 @@
-<?php echo $this->translate('Test'); ?>
+<?php
+$title = $this->translate('Unauthorized title');
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<hr/>
+<?php echo $this->translate('Unauthorized description'); ?>
