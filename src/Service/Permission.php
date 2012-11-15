@@ -50,8 +50,8 @@ class Permission extends AbstractACLService
                 $acl->allow($role->name, $pm);
             }
         }
-        \Zend\View\Helper\Navigation\HelperAbstract::setDefaultAcl($acl);
-        \Zend\View\Helper\Navigation\HelperAbstract::setDefaultRole('Guest');
+        \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
+        \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole('Guest');
 
         return $acl;
     }
