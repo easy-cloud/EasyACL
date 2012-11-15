@@ -13,43 +13,8 @@ class Permission extends AbstractACLService
     protected $serviceLocator;
 
     protected $RolesService;
+
     protected $UserService;
-
-    // protected function getACL()
-    // {
-    //     $acl = new Acl();
-    //     $roles=$this->getRolesService()->getRoles();
-    //     $resources=$this->getPermission();
-    //     $acl->addRole(new Role('master'));
-    //     $acl->allow('master');
-    //     foreach ($roles as $role) {
-    //         $acl->addRole(new Role($role->name));
-    //         $all=$role->allowed_all;
-    //         if (isset($all[0])&&$all[0]==="master") {
-    //             $acl->allow($role->name);
-    //         } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
-    //             foreach ($all['namespace'] as $namespace) {
-    //                 $acl->allow($role->name, $namespace);
-    //             }
-    //         } else {
-    //             if (isset($all)&&is_array($all)) {
-    //                 foreach ($all as $key=>$permission) {
-    //                     if ($key!=="action") {
-    //                         $acl->allow($role->name, $permission);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         foreach ($role->permissions as $permission) {
-    //             $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
-    //             $acl->allow($role->name, $pm);
-    //         }
-    //     }
-    //     \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
-    //     \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole('Guest');
-
-    //     return $acl;
-    //}
 
     protected function getAcl()
     {
@@ -72,7 +37,7 @@ class Permission extends AbstractACLService
         } else {
             $acl->addRole(new Role($rolename));
             try {
-                $roles[] = $this->getRolesService()->getRepository()->findyBy(array('name'=>'Guest'));
+                $roles[] = $this->getRolesService()->getRepository()->findOneBy(array('name'=>'Guest'));
             } catch (Exception $e) {
 
             }
