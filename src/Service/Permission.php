@@ -90,7 +90,7 @@ class Permission extends AbstractACLService
 
     }
 
-    public function getgrouprolesService()
+    public function getRolesService()
     {
         if (!$this->RolesService) {
             $this->RolesService=$this->getServiceLocator()->get('roles.service');
