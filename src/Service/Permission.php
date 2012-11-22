@@ -22,6 +22,21 @@ class Permission extends AbstractACLService
         $UserLoggedin = $this->getUser();
         $roles = array();
         $rolename = 'Guest';
+        $resources=$this->getPermission();
+        foreach ($resources as $resource) {
+            $action = $resource->namespace . "\\" . $resource->controller . "\\" . $resource->action;
+            $controller = $resource->namespace . "\\" . $resource->controller;
+            $namespace = $resource->namespace;
+            if (!$acl->hasResource($namespace)) {
+                $acl->addResource($namespace);
+            }
+            if (!$acl->hasResource($controller)) {
+                $acl->addResource($controller, $namespace);
+            }
+            if (!$acl->hasResource($action)) {
+                $acl->addResource($action, $controller);
+            }
+        }
         if ($UserLoggedin) {
             if($UserLoggedin->roles){
                 $allowed_all=$UserLoggedin->roles->allowed_all;
@@ -68,25 +83,11 @@ class Permission extends AbstractACLService
 
             }
         }
-        $resources=$this->getPermission();
-        foreach ($resources as $resource) {
-            $action = $resource->namespace . "\\" . $resource->controller . "\\" . $resource->action;
-            $controller = $resource->namespace . "\\" . $resource->controller;
-            $namespace = $resource->namespace;
-            if (!$acl->hasResource($namespace)) {
-                $acl->addResource($namespace);
-            }
-            if (!$acl->hasResource($controller)) {
-                $acl->addResource($controller, $namespace);
-            }
-            if (!$acl->hasResource($action)) {
-                $acl->addResource($action, $controller);
-            }
-        }
         \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
         \Zend\View\Helper\Navigation\AbstractHelper::setDefaultRole($rolename);
 
         return $acl;
+
 
     }
 
