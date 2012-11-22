@@ -113,7 +113,9 @@ class Permission extends AbstractACLService
             }
         }
         if ($UserLoggedin) {
-            $allowed_all=$UserLoggedin->roles->allowed_all;
+            if(is_object($UserLoggedin->roles)){
+                $allowed_all=$UserLoggedin->roles->allowed_all;
+            }
             $rolename = $UserLoggedin->email;
             $acl->addRole(new Role($rolename));
             if (isset($allowed_all[0])&&$allowed_all[0]==="master") {
@@ -135,24 +137,26 @@ class Permission extends AbstractACLService
         
         if (!empty($roles) && $rolename) {
             foreach ($roles as $role) {
-                $all=$role->allowed_all;
-                if (isset($all[0])&&$all[0]==="master") {
-                } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
-                    foreach ($all['namespace'] as $namespace) {
-                        $acl->allow($rolename, $namespace);
-                    }
-                } else {
-                    if (isset($all)&&is_array($all)) {
-                        foreach ($all as $key=>$permission) {
-                            if ($key!=="action") {
-                                $acl->allow($rolename, $permission);
+                if(is_object($role)){
+                    $all=$role->allowed_all;
+                    if (isset($all[0])&&$all[0]==="master") {
+                    } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
+                        foreach ($all['namespace'] as $namespace) {
+                            $acl->allow($rolename, $namespace);
+                        }
+                    } else {
+                        if (isset($all)&&is_array($all)) {
+                            foreach ($all as $key=>$permission) {
+                                if ($key!=="action") {
+                                    $acl->allow($rolename, $permission);
+                                }
                             }
                         }
                     }
-                }
-                foreach ($role->permissions as $permission) {
-                    $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
-                    $acl->allow($rolename, $pm);
+                    foreach ($role->permissions as $permission) {
+                        $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
+                        $acl->allow($rolename, $pm);
+                    }
                 }
             }
         }
