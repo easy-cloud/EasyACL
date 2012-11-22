@@ -23,7 +23,9 @@ class Permission extends AbstractACLService
         $roles = array();
         $rolename = 'Guest';
         if ($UserLoggedin) {
-            $allowed_all=$UserLoggedin->roles->allowed_all;
+            if($UserLoggedin->roles){
+                $allowed_all=$UserLoggedin->roles->allowed_all;
+            }
             $rolename = $UserLoggedin->email;
             $acl->addRole(new Role($rolename));
             if (isset($allowed_all[0])&&$allowed_all[0]==="master") {
@@ -57,9 +59,10 @@ class Permission extends AbstractACLService
                 $acl->addResource($action, $controller);
             }
         }
-        if (!empty($roles) && $rolename) {
-            foreach ($roles as $role) {
-                $all=$role->allowed_all;
+        if(is_object($UserLoggedin->group)){
+            foreach($UserLoggedin->group as $group){
+                $grouproles = $group->roles;
+                $all=$grouproles->allowed_all;
                 if (isset($all[0])&&$all[0]==="master") {
                 } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {
                     foreach ($all['namespace'] as $namespace) {
@@ -74,7 +77,7 @@ class Permission extends AbstractACLService
                         }
                     }
                 }
-                foreach ($role->permissions as $permission) {
+                foreach ($grouproles->permissions as $permission) {
                     $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
                     $acl->allow($rolename, $pm);
                 }
@@ -87,7 +90,7 @@ class Permission extends AbstractACLService
 
     }
 
-    public function getRolesService()
+    public function getgrouprolesService()
     {
         if (!$this->RolesService) {
             $this->RolesService=$this->getServiceLocator()->get('roles.service');
@@ -198,9 +201,9 @@ class Permission extends AbstractACLService
                 if (isset($allowed_all[0])&&$allowed_all[0]==="master") {
                     return true;
                 }
-                if ($acl->isAllowed($loggedUser->email, $needed)) {
-                    return true;
-                }
+            }
+            if ($acl->isAllowed($loggedUser->email, $needed)) {
+                return true;
             }
         } else {
             if ($acl->isAllowed('Guest', $needed)) {
