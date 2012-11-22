@@ -36,30 +36,7 @@ class Permission extends AbstractACLService
                     $roles[] = $group->roles;
                 }
             }
-        } else {
-            $acl->addRole(new Role($rolename));
-            try {
-                $roles[] = $this->getRolesService()->getRepository()->findOneBy(array('name'=>'Guest'));
-            } catch (Exception $e) {
-
-            }
-        }
-        $resources=$this->getPermission();
-        foreach ($resources as $resource) {
-            $action = $resource->namespace . "\\" . $resource->controller . "\\" . $resource->action;
-            $controller = $resource->namespace . "\\" . $resource->controller;
-            $namespace = $resource->namespace;
-            if (!$acl->hasResource($namespace)) {
-                $acl->addResource($namespace);
-            }
-            if (!$acl->hasResource($controller)) {
-                $acl->addResource($controller, $namespace);
-            }
-            if (!$acl->hasResource($action)) {
-                $acl->addResource($action, $controller);
-            }
-        }
-        if(is_object($UserLoggedin->group)){
+            if(is_object($UserLoggedin->group)){
             foreach($UserLoggedin->group as $group){
                 $grouproles = $group->roles;
                 $all=$grouproles->allowed_all;
@@ -81,6 +58,29 @@ class Permission extends AbstractACLService
                     $pm = $permission->namespace . "\\" . $permission->controller . "\\" . $permission->action;
                     $acl->allow($rolename, $pm);
                 }
+            }
+        }
+        } else {
+            $acl->addRole(new Role($rolename));
+            try {
+                $roles[] = $this->getRolesService()->getRepository()->findOneBy(array('name'=>'Guest'));
+            } catch (Exception $e) {
+
+            }
+        }
+        $resources=$this->getPermission();
+        foreach ($resources as $resource) {
+            $action = $resource->namespace . "\\" . $resource->controller . "\\" . $resource->action;
+            $controller = $resource->namespace . "\\" . $resource->controller;
+            $namespace = $resource->namespace;
+            if (!$acl->hasResource($namespace)) {
+                $acl->addResource($namespace);
+            }
+            if (!$acl->hasResource($controller)) {
+                $acl->addResource($controller, $namespace);
+            }
+            if (!$acl->hasResource($action)) {
+                $acl->addResource($action, $controller);
             }
         }
         \Zend\View\Helper\Navigation\AbstractHelper::setDefaultAcl($acl);
