@@ -14,6 +14,21 @@ class User extends AbstractACLService
         }
     }
 
+    public function isEmpty()
+    {
+         $qb = $this->getEntityManager()->createQueryBuilder();
+         $qb->select('count(u.id)');
+         $qb->from('ACL\Entity\User', 'u');
+         $query = $qb->getQuery();
+         $results = $query->execute();
+         if($results[0][1]==0){
+
+            return true;
+         }
+         
+         return false;
+    }
+
     public function addUser($request=null)
     {
         $em = $this->getEntityManager();
@@ -98,6 +113,12 @@ class User extends AbstractACLService
     public function login($request)
     {
         $data = $request->getPost();
+        if($this->isEmpty()){
+            $bcrypt = new \Zend\Crypt\Password\Bcrypt();
+            $bcrypt->setSalt(51292170314052011201451452855644564);
+            $passwordGiven=$bcrypt->create($data['password']);
+            echo $passwordGiven . "<br/>" . "Use this for the first account!";
+        }
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         $adapter = $authService->getAdapter();
         $adapter->setIdentityValue($data['email']);
