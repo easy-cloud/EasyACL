@@ -12,3 +12,34 @@ INSERT INTO  `user` (`id` , `name` , `surname` , `email` , `password`)VALUES (NU
 INSERT INTO  `roles` (`id` , `user_id` , `group_id` , `name` , `allowed_all`)VALUES (NULL ,  '1', NULL ,  'Master',  'a:1:{i:0;s:6:"master";}');
 
 You can get the password by logging in without an account in the database(it will echo itself!).
+
+To use the Navigation rigths, add the resource to the navigigation item! Example:
+'navigation' => array(
+    'default' => array(
+        'acl/user' => array(
+            'label' => 'Users',
+            'route' => 'acl/users',
+            'resource' => 'ACL\User\index',
+        ),
+        'acl/group' => array(
+            'label' => 'Groups',
+            'route' => 'acl/groups',
+            'resource' => 'ACL\Group\index',
+        ),
+        'acl/right' => array(
+            'label' => 'Roles',
+            'route' => 'acl/roles',
+            'resource' => 'ACL\Roles\index',
+        ),
+        'acl/permission' => array(
+            'label' => 'Permission',
+            'route' => 'acl/permission',
+            'resource' => 'ACL\Permission\index',
+        ),
+        'acl/logout' => array(
+            'label' => 'Log out',
+            'route' => 'acl/logout',
+            'resource' => 'ACL\User\logout',
+        ),
+    ),
+),
