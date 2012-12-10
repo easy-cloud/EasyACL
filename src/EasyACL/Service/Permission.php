@@ -38,7 +38,7 @@ class Permission extends AbstractACLService
             }
         }
         if ($UserLoggedin) {
-            if(is_object($UserLoggedin->roles)){
+            if (is_object($UserLoggedin->roles)) {
                 $allowed_all=$UserLoggedin->roles->allowed_all;
             }
             $rolename = $UserLoggedin->email;
@@ -59,10 +59,10 @@ class Permission extends AbstractACLService
 
             }
         }
-        
+
         if (!empty($roles) && $rolename) {
             foreach ($roles as $role) {
-                if(is_object($role)){
+                if (is_object($role)) {
                     $all=$role->allowed_all;
                     if (isset($all[0])&&$all[0]==="master") {
                     } elseif (isset($all['namespace'])&&is_array($all['namespace'])&&!empty($all['namespace'])) {

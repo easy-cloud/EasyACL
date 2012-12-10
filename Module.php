@@ -52,7 +52,7 @@ class Module
                 }
             )
         );
-    }    
+    }
 
     public function getConfig()
     {

@@ -16,17 +16,16 @@ class User extends AbstractACLService
 
     public function isEmpty()
     {
-         $qb = $this->getEntityManager()->createQueryBuilder();
-         $qb->select('count(u.id)');
-         $qb->from('ACL\Entity\User', 'u');
-         $query = $qb->getQuery();
-         $results = $query->execute();
-         if($results[0][1]==0){
-
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('count(u.id)');
+        $qb->from('ACL\Entity\User', 'u');
+        $query = $qb->getQuery();
+        $results = $query->execute();
+        if ($results[0][1]==0) {
             return true;
-         }
-         
-         return false;
+        }
+
+        return false;
     }
 
     public function addUser($request=null)
@@ -35,7 +34,7 @@ class User extends AbstractACLService
         $user = new \ACL\Entity\User();
         $form = new UserForm($em);
         $form->get('submit')->setAttribute('value', 'Add');
-        $form->get('groups[]')->setValueOptions(array_merge(array(0=>'None'),$form->get('groups[]')->getValueOptions()));
+        $form->get('groups[]')->setValueOptions(array_merge(array(0=>'None'), $form->get('groups[]')->getValueOptions()));
         if ($request!==null) {
             if ($request->isPost()) {
                 $post=$request->getPost();
@@ -113,7 +112,7 @@ class User extends AbstractACLService
     public function login($request)
     {
         $data = $request->getPost();
-        if($this->isEmpty()){
+        if ($this->isEmpty()) {
             $bcrypt = new \Zend\Crypt\Password\Bcrypt();
             $bcrypt->setSalt(51292170314052011201451452855644564);
             $passwordGiven=$bcrypt->create($data['password']);

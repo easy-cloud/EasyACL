@@ -1,7 +1,7 @@
 <?php
-namespace ACL;
+namespace EasyCloud\EasyACL;
 return array(
-    'service_manager'=>array(   
+    'service_manager'=>array(
         'factories' => array(
             'user.service'=> function(){
                 return new Service\User(array('model'=>'ACL\Entity\User'));
@@ -15,6 +15,6 @@ return array(
             'permission.service'=> function(){
                 return new Service\Permission(array('model'=>'ACL\Entity\Permission'));
             },
-        ), 
+        ),
     ),
 );

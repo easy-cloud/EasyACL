@@ -5,28 +5,28 @@ use Zend\Form\Form;
 
 class GroupForm extends Form
 {
-	public function __construct($name = 'form')
+    public function __construct($name = 'form')
     {
-    	parent::__construct('form');
-	    $this->setAttribute('method', 'post');
-		$this->add(array(
-	       'name'       => 'id',
-	       'attributes' => array(
-	       		'type'		=> 'hidden',
-	       	),
-	   	));
-		
-		$this->add(array(
-	       'name'       => 'name',
-	       'attributes' => array(
-	       		'type'		=> 'text',
-	       	),
-	       'options'	=> array(
-	       		'label'		=> 'Name',
-	       	),
-	   	));	   	
-		
-		$this->add(array(
+        parent::__construct('form');
+        $this->setAttribute('method', 'post');
+        $this->add(array(
+           'name'       => 'id',
+           'attributes' => array(
+                   'type'		=> 'hidden',
+               ),
+           ));
+
+        $this->add(array(
+           'name'       => 'name',
+           'attributes' => array(
+                   'type'		=> 'text',
+               ),
+           'options'	=> array(
+                   'label'		=> 'Name',
+               ),
+           ));
+
+        $this->add(array(
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
@@ -45,5 +45,5 @@ class GroupForm extends Form
                 'class' => 'btn red-btn',
             ),
         ));
-	}
+    }
 }

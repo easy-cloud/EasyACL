@@ -1,5 +1,5 @@
 {
-    "name": "ajanssen/acl",
+    "name": "easycloud/easyacl",
     "description": "ZF2 module for managing rights and users.",
     "license": "New-BSD-License",
     "keywords": [
@@ -9,7 +9,7 @@
         "zend framework 2",
         "module"
     ],
-    "homepage": "https://bitbucket.org/ajanssen/acl",
+    "homepage": "https://www.github.com/Easy-Cloud/EasyACL",
     "authors": [
         {
             "name": "Alexander Janssen",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "ACL": "src/"
+            "easyacl": "src/"
         },
         "classmap": [
             "./Module.php"
