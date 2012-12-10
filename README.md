@@ -19,27 +19,27 @@ To use the Navigation rigths, add the resource to the navigigation item! Example
         'acl/user' => array(
             'label' => 'Users',
             'route' => 'acl/users',
-            'resource' => 'ACL\User\index',
+            'resource' => 'EasyACL\User\index',
         ),
         'acl/group' => array(
             'label' => 'Groups',
             'route' => 'acl/groups',
-            'resource' => 'ACL\Group\index',
+            'resource' => 'EasyACL\Group\index',
         ),
         'acl/right' => array(
             'label' => 'Roles',
             'route' => 'acl/roles',
-            'resource' => 'ACL\Roles\index',
+            'resource' => 'EasyACL\Roles\index',
         ),
         'acl/permission' => array(
             'label' => 'Permission',
             'route' => 'acl/permission',
-            'resource' => 'ACL\Permission\index',
+            'resource' => 'EasyACL\Permission\index',
         ),
         'acl/logout' => array(
             'label' => 'Log out',
             'route' => 'acl/logout',
-            'resource' => 'ACL\User\logout',
+            'resource' => 'EasyACL\User\logout',
         ),
     ),
 ),

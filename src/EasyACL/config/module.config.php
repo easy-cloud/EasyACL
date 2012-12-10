@@ -2,11 +2,11 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'ACL\Controller\User' => 'ACL\Controller\UserController',
-            'ACL\Controller\Roles' => 'ACL\Controller\RolesController',
-            'ACL\Controller\Group' => 'ACL\Controller\GroupController',
-            'ACL\Controller\Errors' => 'ACL\Controller\ErrorsController',
-            'ACL\Controller\Permission' => 'ACL\Controller\PermissionController',
+            'EasyACL\Controller\User' => 'EasyACL\Controller\UserController',
+            'EasyACL\Controller\Roles' => 'EasyACL\Controller\RolesController',
+            'EasyACL\Controller\Group' => 'EasyACL\Controller\GroupController',
+            'EasyACL\Controller\Errors' => 'EasyACL\Controller\ErrorsController',
+            'EasyACL\Controller\Permission' => 'EasyACL\Controller\PermissionController',
         ),
     ),
     'doctrine' => array(
@@ -20,7 +20,7 @@ return array(
         'authentication' => array(
             'orm_default' => array(
                 'object_manager' => 'doctrine.entitymanager.orm_default',
-                'identity_class' => 'ACL\Entity\User',
+                'identity_class' => 'EasyACL\Entity\User',
                 'identity_property' => 'email',
                 'credential_property' => 'password',
                 'credential_callable' => function ($user, $passwordGiven) {
@@ -43,7 +43,7 @@ return array(
     ),
     'controller_plugins' => array(
         'invokables' => array(
-            'Permission' => 'ACL\Plugin\Permission',
+            'Permission' => 'EasyACL\Plugin\Permission',
         )
     ),
 );
