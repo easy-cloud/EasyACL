@@ -1,6 +1,6 @@
 <?php
+namespace EasyACL\Service;
 
-namespace ACL\Service;
 use Zend\ServiceManager,
     ACL\Form\PermissionForm,
     Zend\Permissions\Acl\Acl,

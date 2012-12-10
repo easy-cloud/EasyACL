@@ -1,5 +1,4 @@
 <?php
-namespace EasyCloud\EasyACL;
 return array(
     'controllers' => array(
         'invokables' => array(

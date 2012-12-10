@@ -1,5 +1,5 @@
 <?php
-    namespace ACL\Entity;
+    namespace EasyACL\Entity;
     use Doctrine\ORM\Mapping as ORM,
         Zend\InputFilter\Factory as InputFactory,
         Zend\InputFilter\InputFilter,

@@ -1,5 +1,4 @@
 <?php
-namespace EasyCloud\EasyACL;
 return array(
     'service_manager'=>array(
         'factories' => array(

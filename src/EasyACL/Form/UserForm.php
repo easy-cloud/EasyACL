@@ -1,5 +1,5 @@
 <?php
-namespace ACL\Form;
+namespace EasyACL\Form;
 
 use Zend\Form\Form;
 

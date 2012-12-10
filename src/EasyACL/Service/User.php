@@ -1,6 +1,6 @@
 <?php
+namespace EasyACL\Service;
 
-namespace ACL\Service;
 use ACL\Form\UserForm;
 
 class User extends AbstractACLService
