@@ -15,7 +15,7 @@ return array(
             'orm_default' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Entity')
+                'paths' => array(__DIR__ . '/../Entity')
             ),
         ),
         'authentication' => array(
