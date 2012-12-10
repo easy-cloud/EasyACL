@@ -1,5 +1,5 @@
 <?php
-namespace EasyCloud\EasyACL;
+namespace EasyACL;
 return array(
     'router' => array(
         'routes' => array(

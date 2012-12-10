@@ -1,6 +1,6 @@
 <?php
 
-namespace ACL\Plugin;
+namespace EasyACL\Plugin;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 class Permission extends AbstractPlugin

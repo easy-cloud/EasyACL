@@ -1,6 +1,6 @@
 <?php
 
-namespace ACL\Controller;
+namespace EasyACL\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;

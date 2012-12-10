@@ -1,5 +1,5 @@
 <?php
-namespace ACL\Service;
+namespace EasyACL\Service;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;

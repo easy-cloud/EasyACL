@@ -22,10 +22,11 @@
     },
     "autoload": {
         "psr-0": {
-            "easyacl": "src/"
+            "EasyACL\\": "src/"
         },
         "classmap": [
             "./Module.php"
         ]
     }
 }
+
