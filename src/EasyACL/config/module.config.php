@@ -1,4 +1,5 @@
 <?php
+namespace EasyACL;
 return array(
     'controllers' => array(
         'invokables' => array(
