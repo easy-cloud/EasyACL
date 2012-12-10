@@ -1,7 +1,7 @@
 <?php
 namespace EasyACL\Service;
 
-use ACL\Form\GroupForm;
+use EasyACL\Form\GroupForm;
 
 class Group extends AbstractACLService
 {

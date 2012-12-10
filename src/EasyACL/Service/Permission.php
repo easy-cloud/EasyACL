@@ -2,7 +2,7 @@
 namespace EasyACL\Service;
 
 use Zend\ServiceManager,
-    ACL\Form\PermissionForm,
+    EasyACL\Form\PermissionForm,
     Zend\Permissions\Acl\Acl,
     Zend\Permissions\Acl\Role\GenericRole as Role,
     Zend\Permissions\Acl\Resource\GenericResource as Resource;

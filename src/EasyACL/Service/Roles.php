@@ -2,8 +2,8 @@
 namespace EasyACL\Service;
 
 use Zend\ServiceManager,
-    ACL\Form\RolesForm,
-    ACL\Form\PermissionsForm;
+    EasyACL\Form\RolesForm,
+    EasyACL\Form\PermissionsForm;
 
 class Roles extends AbstractACLService
 {

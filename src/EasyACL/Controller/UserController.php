@@ -4,7 +4,7 @@ namespace EasyACL\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ACL\Form\LoginForm;
+use EasyACL\Form\LoginForm;
 class UserController extends AbstractActionController
 {
     protected $Service;

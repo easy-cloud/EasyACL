@@ -8,7 +8,7 @@ return array(
                 'options'   => array(
                     'route'     => '/acl',
                     'defaults'  => array(
-                        '__NAMESPACE__' => 'ACL\Controller',
+                        '__NAMESPACE__' => 'EasyACL\Controller',
                         'controller'    => 'User',
                         'action'        => 'index',
                     ),
@@ -20,7 +20,7 @@ return array(
                         'options'   => array(
                             'route'     => '/users',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\User',
+                                'controller'    => 'EasyACL\Controller\User',
                                 'action'        => 'index'
                             ),
                         ),
@@ -31,7 +31,7 @@ return array(
                                 'options'   => array(
                                     'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\User',
+                                        'controller'    => 'EasyACL\Controller\User',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -45,7 +45,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\User',
+                                        'controller'    => 'EasyACL\Controller\User',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -59,7 +59,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\User',
+                                        'controller'    => 'EasyACL\Controller\User',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -72,7 +72,7 @@ return array(
                         'options'   => array(
                             'route'     => '/login',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\User',
+                                'controller'    => 'EasyACL\Controller\User',
                                 'action'        => 'login'
                             ),
                         ),
@@ -83,7 +83,7 @@ return array(
                         'options'   => array(
                             'route'     => '/logout',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\User',
+                                'controller'    => 'EasyACL\Controller\User',
                                 'action'        => 'logout'
                             ),
                         ),
@@ -94,7 +94,7 @@ return array(
                         'options'   => array(
                             'route'     => '/groups',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\Group',
+                                'controller'    => 'EasyACL\Controller\Group',
                                 'action'        => 'index'
                             ),
                         ),
@@ -105,7 +105,7 @@ return array(
                                 'options'   => array(
                                     'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Group',
+                                        'controller'    => 'EasyACL\Controller\Group',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -119,7 +119,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Group',
+                                        'controller'    => 'EasyACL\Controller\Group',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -133,7 +133,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Group',
+                                        'controller'    => 'EasyACL\Controller\Group',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -146,7 +146,7 @@ return array(
                         'options'   => array(
                             'route'     => '/roles',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\Roles',
+                                'controller'    => 'EasyACL\Controller\Roles',
                                 'action'        => 'index'
                             ),
                         ),
@@ -157,7 +157,7 @@ return array(
                                 'options'   => array(
                                     'route'     => '/add',
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Roles',
+                                        'controller'    => 'EasyACL\Controller\Roles',
                                         'action'        => 'add'
                                     ),
                                 ),
@@ -171,7 +171,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Roles',
+                                        'controller'    => 'EasyACL\Controller\Roles',
                                         'action'        => 'edit'
                                     ),
                                 ),
@@ -185,7 +185,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Roles',
+                                        'controller'    => 'EasyACL\Controller\Roles',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -199,7 +199,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Roles',
+                                        'controller'    => 'EasyACL\Controller\Roles',
                                         'action'        => 'rights'
                                     ),
                                 ),
@@ -212,7 +212,7 @@ return array(
                         'options'   => array(
                             'route'     => '/permission',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\Permission',
+                                'controller'    => 'EasyACL\Controller\Permission',
                                 'action'        => 'index'
                             ),
                         ),
@@ -226,7 +226,7 @@ return array(
                                         'id'     => '[0-9]+',
                                     ),
                                     'defaults'  => array(
-                                        'controller'    => 'ACL\Controller\Permission',
+                                        'controller'    => 'EasyACL\Controller\Permission',
                                         'action'        => 'remove'
                                     ),
                                 ),
@@ -239,7 +239,7 @@ return array(
                         'options'   => array(
                             'route'     => '/norights',
                             'defaults'  => array(
-                                'controller'    => 'ACL\Controller\Errors',
+                                'controller'    => 'EasyACL\Controller\Errors',
                                 'action'        => 'norights'
                             ),
                         ),

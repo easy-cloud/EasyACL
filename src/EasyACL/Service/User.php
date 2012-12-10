@@ -1,7 +1,7 @@
 <?php
 namespace EasyACL\Service;
 
-use ACL\Form\UserForm;
+use EasyACL\Form\UserForm;
 
 class User extends AbstractACLService
 {
@@ -18,7 +18,7 @@ class User extends AbstractACLService
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('count(u.id)');
-        $qb->from('ACL\Entity\User', 'u');
+        $qb->from('EasyACL\Entity\User', 'u');
         $query = $qb->getQuery();
         $results = $query->execute();
         if ($results[0][1]==0) {

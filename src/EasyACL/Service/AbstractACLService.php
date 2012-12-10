@@ -8,7 +8,7 @@ use Zend\ServiceManager\Exception\RuntimeException;
    * AbstractACLService
    *
    * @category   AbstractService
-   * @package    ACL
+   * @package    EasyACL
    * @subpackage Service
    * @author     Alexander Janssen <a.janssen@easy-cloud.eu>
    * @license    http://opensource.org/licenses/gpl-license.php GNU Public License
