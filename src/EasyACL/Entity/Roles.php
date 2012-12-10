@@ -63,24 +63,24 @@
             $this->permissions = new \Doctrine\Common\Collections\ArrayCollection();
         }
 
-        public function setUser(\ACL\Entity\User $user)
+        public function setUser(\EasyACL\Entity\User $user)
         {
             $this->user_id=$user;
         }
 
-        public function setGroup(\ACL\Entity\Group $group)
+        public function setGroup(\EasyACL\Entity\Group $group)
         {
             $this->group_id=$group;
         }
 
-        public function addPermission(\ACL\Entity\Permission $permission)
+        public function addPermission(\EasyACL\Entity\Permission $permission)
         {
             if (!$this->permissions->contains($permission)) {
                 $this->permissions->add($permission);
             }
         }
 
-        public function removePermission(\ACL\Entity\Permission $permission)
+        public function removePermission(\EasyACL\Entity\Permission $permission)
         {
             if ($this->permissions->contains($permission)) {
                 $this->permissions->removeElement($permission);

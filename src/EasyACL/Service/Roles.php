@@ -63,7 +63,7 @@ class Roles extends AbstractACLService
     public function addRoles($request=null)
     {
         $em = $this->getEntityManager();
-        $roles = new \ACL\Entity\Roles();
+        $roles = new \EasyACL\Entity\Roles();
         $form = new RolesForm($em);
         $form->get('submit')->setAttribute('value', 'Add');
         $form->get('user_id')->setValueOptions(array_merge(array(0=>'None'),$form->get('user_id')->getValueOptions()));

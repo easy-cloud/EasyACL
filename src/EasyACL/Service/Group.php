@@ -17,7 +17,7 @@ class Group extends AbstractACLService
     public function addGroup($request=null)
     {
         $em = $this->getEntityManager();
-        $group = new \ACL\Entity\Group();
+        $group = new \EasyACL\Entity\Group();
         $form = new GroupForm();
         $form->get('submit')->setAttribute('value', 'Add');
         if ($request!==null) {

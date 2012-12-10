@@ -71,14 +71,14 @@
             return $this->email;
         }
 
-        public function addGroup(\ACL\Entity\Group $group)
+        public function addGroup(\EasyACL\Entity\Group $group)
         {
             if (!$this->group->contains($group)) {
                 $this->group->add($group);
             }
         }
 
-        public function removeGroup(\ACL\Entity\Group $group)
+        public function removeGroup(\EasyACL\Entity\Group $group)
         {
             if ($this->group->contains($group)) {
                 $this->group->removeElement($group);
@@ -180,7 +180,7 @@
                         array(
                             'name'      => '\DutchBridge\Validator\Doctrine\NoRecordExists',
                             'options'   => array(
-                                'entity' => '\ACL\Entity\User',
+                                'entity' => '\EasyACL\Entity\User',
                                 'attribute' => 'email',
                                 'exclude'   => array('attribute'=>'email', 'value'=>$this->email),
                             ),

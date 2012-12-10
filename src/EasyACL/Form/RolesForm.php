@@ -31,7 +31,7 @@ class RolesForm extends Form
             'options' => array(
                 'label' => 'User',
                 'object_manager' => $em,
-                'target_class'   => '\ACL\Entity\User',
+                'target_class'   => '\EasyACL\Entity\User',
                 'property'       => 'name'
             ),
         ));
@@ -42,7 +42,7 @@ class RolesForm extends Form
             'options' => array(
                 'label' => 'Group',
                 'object_manager' => $em,
-                'target_class'   => '\ACL\Entity\Group',
+                'target_class'   => '\EasyACL\Entity\Group',
                 'identifier'     => 'id',
                 'property'       => 'name'
             ),

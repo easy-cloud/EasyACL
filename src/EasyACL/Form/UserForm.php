@@ -101,7 +101,7 @@ class UserForm extends Form
             'options' => array(
                 'label' => 'Group',
                 'object_manager' => $em,
-                'target_class'   => '\ACL\Entity\Group',
+                'target_class'   => '\EasyACL\Entity\Group',
                 'property'       => 'name'
             ),
         ));

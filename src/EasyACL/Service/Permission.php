@@ -153,7 +153,7 @@ class Permission extends AbstractACLService
     public function addPermission($data)
     {
         $em= $this->getEntityManager();
-        $permission=new \ACL\Entity\Permission();
+        $permission=new \EasyACL\Entity\Permission();
         $permission->exchangeArray($data);
         $em->persist($permission);
         foreach ($this->getRolesService()->getRoles() as $roles) {

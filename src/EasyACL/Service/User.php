@@ -31,7 +31,7 @@ class User extends AbstractACLService
     public function addUser($request=null)
     {
         $em = $this->getEntityManager();
-        $user = new \ACL\Entity\User();
+        $user = new \EasyACL\Entity\User();
         $form = new UserForm($em);
         $form->get('submit')->setAttribute('value', 'Add');
         $form->get('groups[]')->setValueOptions(array_merge(array(0=>'None'), $form->get('groups[]')->getValueOptions()));

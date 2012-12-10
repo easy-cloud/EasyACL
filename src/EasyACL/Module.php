@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace EasyACL;
 
 use Zend\Mvc\MvcEvent,
